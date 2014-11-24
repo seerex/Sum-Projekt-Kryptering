@@ -6,6 +6,7 @@ public class Main {
 		System.out.println( "Mathias" );
 		System.out.println("Kenny G");
 		System.out.println("Anders");
+		System.out.println("Harald");
 
 	}
 
