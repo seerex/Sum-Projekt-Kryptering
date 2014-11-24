@@ -7,7 +7,6 @@ public class User {
 	public static User getInstance(){
 		if(instance == null)
 			instance = new User();
-		
 		return instance;
 	}
 	
@@ -18,7 +17,9 @@ public class User {
 	}
 	
 	public String getUsername(){
-		return username;
+		return "SumProjekt";
+		//return username;
+		
 	}
 	
 	public void setPassword( String password ){
@@ -26,7 +27,8 @@ public class User {
 	}
 	
 	public String getPassword(){
-		return password;
+		return "erhwe54wUJHEFDgrWE%&THsfdvfdvaes";
+		//return password;
 	}
 	
 }
