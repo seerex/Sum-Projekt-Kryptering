@@ -2,6 +2,7 @@ package model;
 
 public class User {
 	private static User instance;
+	private int id;
 	private String username, password;
 	
 	public static User getInstance(){
@@ -11,6 +12,15 @@ public class User {
 	}
 	
 	private User(){}
+	
+	public void setId ( int id ) {
+		this.id = id;
+	}
+	
+	public int getId () {
+		return 1;
+		//return id;
+	}
 	
 	public void setUsername( String username ){
 		this.username = username;
