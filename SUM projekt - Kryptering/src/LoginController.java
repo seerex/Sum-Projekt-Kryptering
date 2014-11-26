@@ -1,3 +1,5 @@
+import model.Login;
+
 
 
 public class LoginController {
@@ -13,9 +15,11 @@ public class LoginController {
 		// The model needs to instantiate the Singleton User class, and set the username variable, but ONLY if it manages to log in.
 		System.out.println("User logging in with: " + username + " - " + password);
 		
-		// TODO-> call model to login passing parameters, and calls shutdownframe() if the login was successfull
+		if (Login.getInstance().login(username, password)) {
+			shutdownFrame();
+		}
 		
-		
+		// TODO-> Whatever will happen if login fails.
 	}
 	
 	// Closes the loginframe and presents the "main" frame if login was successfull
