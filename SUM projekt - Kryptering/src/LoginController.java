@@ -14,6 +14,8 @@ public class LoginController {
 		System.out.println("User logging in with: " + username + " - " + password);
 		
 		// TODO-> call model to login passing parameters, and calls shutdownframe() if the login was successfull
+		
+		
 	}
 	
 	// Closes the loginframe and presents the "main" frame if login was successfull
