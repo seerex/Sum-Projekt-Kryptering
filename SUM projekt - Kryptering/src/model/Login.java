@@ -29,7 +29,7 @@ public class Login {
 		connection = DriverManager.getConnection( DB_URL, DB_USER, DB_PASSWORD );
 		PreparedStatement statement = connection.prepareStatement( checkForUser );
 		statement.setString(1, username);
-		password = hashPassword(password);
+		password = Hasher.hashPassword(password);
 		statement.setString(2, password);
 		ResultSet resultset = statement.executeQuery();
 		
@@ -45,24 +45,5 @@ public class Login {
 			System.out.println( "Error opening connection to DB with statement: " + checkForUser );
 			return false;
 		}
-	}
-	
-	private String hashPassword ( String password ) {
-		String generatedPassword = null;
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
-            byte[] bytes = md.digest(password.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-            generatedPassword = sb.toString();
-        }
-        catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
-        }
-        return generatedPassword;
 	}
 }
