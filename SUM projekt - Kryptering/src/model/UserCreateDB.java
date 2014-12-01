@@ -7,6 +7,8 @@ PRIMARY KEY (id))
  */
 package model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class UserCreateDB {
@@ -15,17 +17,13 @@ public class UserCreateDB {
 	Connection connection = null;
 			
 	public boolean InsertUser(String username, String password){
-		
-		
-		
+
 		try {
 			connection = DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/mydatabase", "SA", "" );
 			createUser = connection.prepareStatement( createUserString );
-			createUser.setString(1, username);
+			createUser.setString(1, hashPassword(password));
 			createUser.setString(2, password);
 			createUser.execute();
-			
-			
 
 		} catch ( SQLException e ) {
 			System.out.println( "Error opening connection to DB with statement: " + createUserString );
@@ -33,5 +31,19 @@ public class UserCreateDB {
 		}
 				
 		return true;
+	}
+
+	private String hashPassword(String password) {
+		String hashedPassword = null;
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-512");
+			digest.update( password.getBytes() );
+			byte[] hashedPasswordBytes = digest.digest();
+			hashedPassword = new String( hashedPasswordBytes );
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return hashedPassword;
 	}
 }
