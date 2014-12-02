@@ -1,4 +1,5 @@
 import view.PasswordFrame;
+import Controller.LoginController;
 
 
 public class Main {
@@ -8,7 +9,5 @@ public class Main {
 		new PasswordFrame("Password");
 		
 		
-
 	}
-
 }
