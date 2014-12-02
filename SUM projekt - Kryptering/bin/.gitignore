@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 /view/
+=======
+/.DS_Store
+/LoginController.class
+/LoginView.class
+/Main.class
+/model/
+/test/
+/view/
+/Controller/
+>>>>>>> 0adf4b258ad1e02ba597be9712ba1a438b906ca4
