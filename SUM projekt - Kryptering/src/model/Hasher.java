@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Hasher {
 	
-	protected static String hashPassword ( String password ) {
+	public static String hashPassword ( String password ) {
 		String generatedPassword = null;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
@@ -21,6 +21,7 @@ public class Hasher {
         {
             e.printStackTrace();
         }
+        System.out.println(generatedPassword);
         return generatedPassword;
 	}
 }
