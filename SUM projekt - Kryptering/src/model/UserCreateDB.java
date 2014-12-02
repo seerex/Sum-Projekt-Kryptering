@@ -21,7 +21,7 @@ public class UserCreateDB {
 		try {
 			connection = DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/mydatabase", "SA", "" );
 			createUser = connection.prepareStatement( createUserString );
-			createUser.setString(1, hashPassword(password));
+			createUser.setString(1, Hasher.hashPassword(password));
 			createUser.setString(2, password);
 			createUser.execute();
 
@@ -31,19 +31,5 @@ public class UserCreateDB {
 		}
 				
 		return true;
-	}
-
-	private String hashPassword(String password) {
-		String hashedPassword = null;
-		try {
-			MessageDigest digest = MessageDigest.getInstance("SHA-512");
-			digest.update( password.getBytes() );
-			byte[] hashedPasswordBytes = digest.digest();
-			hashedPassword = new String( hashedPasswordBytes );
-			
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return hashedPassword;
 	}
 }
