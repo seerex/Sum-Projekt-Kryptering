@@ -75,7 +75,7 @@ public class PasswordFrame extends JFrame implements TableModelListener, ActionL
 		if( e.getSource() == insert ){
 			model.insert(program.getText(), username.getText(), password.getText());;
 			//table.clearSelection();
-			//model.Update(Integer.parseInt(id.getText()), name.getText(), password.getText());
+			//model.Update(Integer.parseInt(program.getText()), username.getText(), password.getText());
 		}
 		
 	}
