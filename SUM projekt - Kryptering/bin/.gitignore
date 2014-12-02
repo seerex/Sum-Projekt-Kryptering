@@ -1,6 +1,8 @@
-/Main.class
-/view/
-/controller/
-/model/
+/.DS_Store
 /LoginController.class
 /LoginView.class
+/Main.class
+/model/
+/test/
+/view/
+/Controller/
