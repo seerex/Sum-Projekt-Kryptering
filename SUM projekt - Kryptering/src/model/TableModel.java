@@ -79,11 +79,12 @@ public class TableModel extends AbstractTableModel {
 			Connection con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydatabase", "SA", "");
 			PreparedStatement statement = con.prepareStatement("INSERT INTO program (programname, username, password, userid) VALUES (?, ?, ?, ?);");
 			
-			int userid = 1;
+			// Get userid of the current user logged in
+			int userid = User.getInstance().getId();
 			
 			statement.setString(1, programname );
 			statement.setString(2, username);
-			statement.setString(3, password);
+			statement.setString(3, EncryptionString.encryptWithKey(password, "Bar12345Bar12345")); // Encrypt the password before inserting it
 			statement.setInt(4, userid );
 			
 			int rowsAffected = statement.executeUpdate();

@@ -1,5 +1,8 @@
 package Controller;
+import java.awt.event.WindowEvent;
+
 import view.LoginView;
+import view.PasswordFrame;
 import model.Login;
 import model.UserCreateDB;
 
@@ -18,9 +21,9 @@ public class LoginController {
 		// The model needs to instantiate the Singleton User class, and set the username variable, but ONLY if it manages to log in.
 		System.out.println("User logging in with: " + username + " - " + password);
 		
-		if (Login.getInstance().login(username, password)) {
-			shutdownFrame();
-		} else
+		if (Login.getInstance().login(username, password)) // Login successfull!
+			closeLoginFrameAndOpenMain();
+		else
 			view.showOptionPaneWithMessage("Wrong username/password combination");
 	}
 	
@@ -29,9 +32,10 @@ public class LoginController {
 			// Create the user in the DB
 			UserCreateDB db = new UserCreateDB();
 			db.InsertUser(username, password);
+			view.resetTextFields();
+			view.showOptionPaneWithMessage("User created!");
 		} else
 			view.showOptionPaneWithMessage("Couldn't create user! Make sure you entered something in all fields and that the password matches");
-			
 	}
 	
 	private boolean sanitizeUserCredentials(String username, String password, String passwordVerify) {
@@ -39,8 +43,8 @@ public class LoginController {
 		return (username.length() > 0 && password.length() > 0 && passwordVerify.length() > 0) && password.equals(passwordVerify);
 	}
 	
-	// Closes the loginframe and presents the "main" frame if login was successfull
-	public void shutdownFrame() {
-		
+	public void closeLoginFrameAndOpenMain() {
+		view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));// Shutdown login frame
+		new PasswordFrame("Password"); // Present the "main frame"
 	}
 }

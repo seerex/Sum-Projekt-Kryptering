@@ -11,7 +11,7 @@ public class Login {
 	private final static String DB_URL = "jdbc:hsqldb:hsql://localhost/mydatabase";
 	private final static String DB_USER = "SA";
 	private final static String DB_PASSWORD = "";
-	private String checkForUser = "select user id from user where username = ? and password = ?";
+	private String checkForUser = "select id from user where username = ? and password = ?";
 	Connection connection = null;
 	
 	private Login () {

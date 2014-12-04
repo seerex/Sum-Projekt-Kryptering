@@ -28,7 +28,6 @@ public class LoginView extends JFrame implements ActionListener {
 		
 		setSize(250, 250);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	private void createView() {
@@ -76,6 +75,15 @@ public class LoginView extends JFrame implements ActionListener {
 			passwordVerifyLabel.setVisible(true);
 			revalidate();
 		}
+	}
+	
+	public void resetTextFields() {
+		passwordText.setText("");
+		passwordVerifyText.setText("");
+		passwordVerifyLabel.setVisible(false);
+		passwordVerifyText.setVisible(false);
+		revalidate();
+		usernameText.setText("");
 	}
 
 	@Override

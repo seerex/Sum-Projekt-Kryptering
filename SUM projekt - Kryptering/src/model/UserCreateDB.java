@@ -21,10 +21,9 @@ public class UserCreateDB {
 		try {
 			connection = DriverManager.getConnection( "jdbc:hsqldb:hsql://localhost/mydatabase", "SA", "" );
 			createUser = connection.prepareStatement( createUserString );
-			createUser.setString(1, Hasher.hashPassword(password));
-			createUser.setString(2, password);
+			createUser.setString(1, username);
+			createUser.setString(2, Hasher.hashPassword(password));
 			createUser.execute();
-
 		} catch ( SQLException e ) {
 			System.out.println( "Error opening connection to DB with statement: " + createUserString );
 			return false;
